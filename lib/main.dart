@@ -1,8 +1,18 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+void showLayoutGuidelines() {
+  debugPaintSizeEnabled = true;
+}
+
+void showBaselines() {
+  debugPaintBaselinesEnabled = true;
+}
 
 void main() {
+  // showLayoutGuidelines();
   runApp(const MyApp());
 }
 
@@ -87,14 +97,11 @@ class _ThreeTapsState extends State<ThreeTaps> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Colors.red[100],
       // padding: EdgeInsets.symmetric(horizontal: 50),
-      // width: 1000,
-      width: MediaQuery.of(context).size.width,
+      width: 1700,
       padding: EdgeInsets.symmetric(horizontal: 50),
-      height: MediaQuery.of(context).size.height,
-
-      // height: 500,
+      height: 1000,
       // constraints: const BoxConstraints(
       //   maxWidth: 700,
       //   minHeight: 500,
@@ -106,26 +113,63 @@ class _ThreeTapsState extends State<ThreeTaps> {
         // fit: StackFit.passthrough,
         children: <Widget>[
           Positioned(
-            child: Row(
-              children: <Widget>[
-                _lowerTap(id: 0),
-                const SizedBox(width: 10),
-                _lowerTap(id: 1),
-                const SizedBox(width: 10),
-                _lowerTap(id: 2),
-              ],
+            left: 0,
+            top: 0,
+            right: 0,
+            child: Container(
+              height: 60,
+              color: Colors.grey,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      color: Colors.pink[900],
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const <Widget>[
+                          Expanded(
+                            child: Text('data'),
+                          ),
+                          Expanded(
+                            child: Text('data'),
+                          ),
+                          Expanded(
+                            child: Text('data'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      color: Colors.amberAccent[100],
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          _introduceMenuTap(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Positioned(
+            left: 0,
             top: 60,
+            right: 0,
             child: Container(
               // width: 700,
-              width: MediaQuery.of(context).size.width - 200,
-              height: MediaQuery.of(context).size.height,
+              // width: MediaQuery.of(context).size.width - 200,
+              // height: MediaQuery.of(context).size.height,
               // margin: EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
-                color: _activeColor,
-                border: Border.all(color: _borderColor, width: 1),
+                color: Colors.tealAccent[100],
+                border: Border.all(color: Colors.purpleAccent, width: 1),
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(5.0),
                   bottomLeft: Radius.circular(5.0),
@@ -190,7 +234,7 @@ class _ThreeTapsState extends State<ThreeTaps> {
               ),
             ),
           ),
-          Positioned(
+          /*   Positioned(
             top: 1,
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -204,8 +248,30 @@ class _ThreeTapsState extends State<ThreeTaps> {
                 _upperTap(id: 2, visible: _visibleC),
               ],
             ),
-          ),
+          ), */
         ],
+      ),
+    );
+  }
+
+  Widget _introduceMenuTap() {
+    return Container(
+      // width: (MediaQuery.of(context).size.width - 700) / 2,
+      width: 200,
+      height: 40,
+      constraints: BoxConstraints(
+        minWidth: 70,
+        maxWidth: 130,
+      ),
+      decoration: BoxDecoration(
+        color: _activeColor,
+        border: Border.all(color: _borderColor, width: 1),
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
+      ),
+      child: Center(
+        child: Text(
+          '메뉴 소개',
+        ),
       ),
     );
   }
