@@ -21,28 +21,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'ThreeTaps',
-      home: AAA(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('ThreeTaps'),
+          elevation: 0,
+          foregroundColor: Colors.cyanAccent,
+          backgroundColor: Colors.black,
+          centerTitle: true,
+        ),
+        backgroundColor: Colors.greenAccent[100],
+        body: const AAA(),
+      ),
     );
   }
 }
 
 class AAA extends StatelessWidget {
   const AAA({Key? key}) : super(key: key);
-  final double _infinity = double.infinity;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ThreeTaps'),
-        elevation: 0,
-        foregroundColor: Colors.cyanAccent,
-        backgroundColor: Colors.black,
-        centerTitle: true,
-      ),
-      body: ThreeTaps(),
-    );
+    return ThreeTaps();
   }
 }
 
